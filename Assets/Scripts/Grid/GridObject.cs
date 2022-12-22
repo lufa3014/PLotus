@@ -1,20 +1,22 @@
-using Grid;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridObject
+namespace Grid
 {
-    private GridSystem<GridObject> gridSystem;
-    private Vector2Int gridPosition;
-
-    public override string ToString()
-        => $"({gridPosition.x}, {gridPosition.y})";
-
-
-    public GridObject(GridSystem<GridObject> gridSystem, Vector2Int gridPosition)
+    public class GridObject
     {
-        this.gridSystem = gridSystem;
-        this.gridPosition = gridPosition;
+        private GridSystem<GridObject> gridSystem;
+        private Coord coord;
+
+        public override string ToString()
+            => coord.ToString();
+
+
+        public GridObject(GridSystem<GridObject> gridSystem, Coord coord)
+        {
+            this.gridSystem = gridSystem;
+            this.coord = coord;
+        }
     }
 }

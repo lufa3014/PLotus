@@ -26,7 +26,7 @@ public class MapGrid : MonoBehaviour
         Instance = this;
 
         gridSystem = new GridSystem<GridObject>(width, height, cellSize,
-            (GridSystem<GridObject> g, Vector2Int gridPosition) => new GridObject(g, gridPosition));
+            (GridSystem<GridObject> g, Coord coord) => new GridObject(g, coord));
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
 
