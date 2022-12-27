@@ -411,7 +411,7 @@ MonoBehaviour:
   <Ground>k__BackingField: {fileID: 1482952464}
   <Object>k__BackingField: {fileID: 570619073}
   <Item>k__BackingField: {fileID: 200999146}
-  scale: 0.015
+  scale: 0.025
 --- !u!1 &1463313738
 GameObject:
   m_ObjectHideFlags: 0
