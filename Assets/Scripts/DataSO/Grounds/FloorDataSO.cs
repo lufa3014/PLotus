@@ -7,4 +7,5 @@ public class FloorDataSO : GroundDataSO, IConstructable
 
     //======== IConstructable ========
     [field: SerializeField] public int ConstructionTime { get; set; }
+    [field: SerializeField] public int ConstructionCost { get; set; }
 }
