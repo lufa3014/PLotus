@@ -68,36 +68,38 @@ public class MapController : MonoBehaviour
 
                 Ground.SetTile(new Vector3Int(x, y), cell.GroundData.Visual);
 
+
+                Coord coord = new Coord(x, y);
                 cell.OnGroundDataChanged += (object sender, EventArgs e) =>
                 {
-                    ChangeGroundVisual(x, y, (sender as Cell).GroundData.Visual);
+                    ChangeGroundVisual(coord, (sender as Cell).GroundData.Visual);
                 };
 
                 cell.OnObjectDataChanged += (object sender, EventArgs e) =>
                 {
-                    ChangeObjectVisual(x, y, (sender as Cell).ObjectData.Visual);
+                    ChangeObjectVisual(coord, (sender as Cell).ObjectData.Visual);
                 };
 
                 cell.OnItemDataChanged += (object sender, EventArgs e) =>
                 {
-                    ChangeItemVisual(x, y, (sender as Cell).ItemData.Visual);
+                    ChangeItemVisual(coord, (sender as Cell).ItemData.Visual);
                 };
             }
         }
     }
 
-    public void ChangeGroundVisual(int x, int y, TileBase groundVisual)
+    public void ChangeGroundVisual(Coord coord, TileBase groundVisual)
     {
-        Ground.SetTile(new Vector3Int(x, y), groundVisual);
+        Ground.SetTile(new Vector3Int(coord.x, coord.y), groundVisual);
     }
 
-    public void ChangeObjectVisual(int x, int y, TileBase objectVisual)
+    public void ChangeObjectVisual(Coord coord, TileBase objectVisual)
     {
-        Object.SetTile(new Vector3Int(x, y), objectVisual);
+        Object.SetTile(new Vector3Int(coord.x, coord.y), objectVisual);
     }
 
-    public void ChangeItemVisual(int x, int y, TileBase itemVisual)
+    public void ChangeItemVisual(Coord coord, TileBase itemVisual)
     {
-        Item.SetTile(new Vector3Int(x, y), itemVisual);
+        Item.SetTile(new Vector3Int(coord.x, coord.y), itemVisual);
     }
 }

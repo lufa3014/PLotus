@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Attractiveness>k__BackingField: 0
   <CanCatchOnFire>k__BackingField: 0
-  <Visual>k__BackingField: {fileID: 0}
+  <Visual>k__BackingField: {fileID: 11400000, guid: 4eb39ac9554dace4385783de64dd0e7f, type: 2}
   <ConstructionTime>k__BackingField: 0
   <ConstructionCost>k__BackingField: 0
   <Health>k__BackingField: 0
