@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2bdbb761f5603409865996fd266d7d, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  <Attractiveness>k__BackingField: 0
+  <CanCatchOnFire>k__BackingField: 0
+  <Visual>k__BackingField: {fileID: 11400000, guid: f49e75596176a6b48b240b506b97a783, type: 2}
+  <WalkSpeed>k__BackingField: 0
+  <PlantGrowthSpeed>k__BackingField: 0
+  <DealsDamage>k__BackingField: 0
