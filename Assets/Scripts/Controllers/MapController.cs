@@ -1,8 +1,10 @@
 using MyGrid;
 using System;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class MapController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class MapController : MonoBehaviour
     [field: SerializeField] public Tilemap Item { get; private set; }
 
 
+    public float scale = .1f;
+
     public Map Map { get; private set; }
 
     private void Awake()
@@ -24,23 +28,42 @@ public class MapController : MonoBehaviour
         }
         Instance = this;
 
-        Map = new Map(BiomeData, 325, 325); 
+        Map = new Map(BiomeData, 325, 325);
     }
 
     private void Start()
     {
+        float[,] noiseMap = new float[Map.Width, Map.Height];
+        (float xOffset, float yOffset) = (UnityEngine.Random.Range(-10000f, 10000f), UnityEngine.Random.Range(-10000f, 10000f));
+        for (int y = 0; y < Map.Height; y++)
+        {
+            for (int x = 0; x < Map.Width; x++)
+            {
+                float noiseValue = Mathf.PerlinNoise(x * scale + xOffset, y * scale + yOffset);
+                noiseMap[x, y] = noiseValue;
+            }
+        }
+
+
         for (int x = 0; x < Map.Width; x++)
         {
             for (int y = 0; y < Map.Height; y++)
             {
                 Cell cell = Map.GetTileAt(x, y);
 
-                switch (UnityEngine.Random.Range(0, 3))
+                float noiseValue = noiseMap[x, y];
+
+                if (noiseValue < .2f)
                 {
-                    case 0: cell.GroundData = BiomeData.TerrainMain; break;
-                    case 1: cell.GroundData = BiomeData.TerrainVariant1; break;
-                    case 2: cell.GroundData = BiomeData.TerrainVariant2; break;
-                    default: break;
+                    cell.GroundData = BiomeData.TerrainVariant2;
+                }
+                else if (noiseValue < .4f)
+                {
+                    cell.GroundData = BiomeData.TerrainVariant1;
+                }
+                else
+                {
+                    cell.GroundData = BiomeData.TerrainMain;
                 }
 
                 Ground.SetTile(new Vector3Int(x, y), cell.GroundData.Visual);
