@@ -1,0 +1,42 @@
+{
+    "keys": [
+        {
+            "x": 1,
+            "y": 1
+        },
+        {
+            "x": 2,
+            "y": 2
+        },
+        {
+            "x": 3,
+            "y": 3
+        }
+    ],
+    "values": [
+        {
+            "items": [
+                {
+                    "instanceID": 24668
+                }
+            ]
+        },
+        {
+            "items": [
+                {
+                    "instanceID": 24668
+                },
+                {
+                    "instanceID": 0
+                }
+            ]
+        },
+        {
+            "items": [
+                {
+                    "instanceID": 0
+                }
+            ]
+        }
+    ]
+}

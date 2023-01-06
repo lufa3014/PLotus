@@ -1,14 +1,12 @@
-using MyGrid;
+using WorldGrid;
 using System;
-using System.Drawing;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
+[DisallowMultipleComponent]
 public class MapController : MonoBehaviour
 {
-    public static MapController Instance { get; set; }
+    public static MapController Instance { get; private set; }
 
     [field: SerializeField] public BiomeDataSO BiomeData { get; private set; }
     [field: SerializeField] public Tilemap Ground { get; private set; }
@@ -18,7 +16,7 @@ public class MapController : MonoBehaviour
 
     public float scale = .1f;
 
-    public Map Map { get; private set; }
+    public Map Map { get; set; }
 
     private void Awake()
     {
@@ -28,7 +26,7 @@ public class MapController : MonoBehaviour
         }
         Instance = this;
 
-        Map = new Map(BiomeData, 325, 325);
+        Map = new Map(BiomeData, 450, 450);
     }
 
     private void Start()
@@ -43,7 +41,6 @@ public class MapController : MonoBehaviour
                 noiseMap[x, y] = noiseValue;
             }
         }
-
 
         for (int x = 0; x < Map.Width; x++)
         {
@@ -69,20 +66,41 @@ public class MapController : MonoBehaviour
                 Ground.SetTile(new Vector3Int(x, y), cell.GroundData.Visual);
 
 
-                Coord coord = new Coord(x, y);
+                Coord coord = new(x, y);
                 cell.OnGroundDataChanged += (object sender, EventArgs e) =>
                 {
                     ChangeGroundVisual(coord, (sender as Cell).GroundData.Visual);
+
+                    // If the ground has been changed from loading data,
+                    // we do not want to perform certain actions.
+                    //if (!SaveLoadController.Instance.IslandSave.IsLoading)
+                    //{
+                    //    Island.ChangedGroundsCoords.Add(coord);
+                    //}     
                 };
 
                 cell.OnObjectDataChanged += (object sender, EventArgs e) =>
                 {
                     ChangeObjectVisual(coord, (sender as Cell).ObjectData.Visual);
+
+                    // If the object has been changed from loading data,
+                    // we do not want to perform certain actions.
+                    //if (!SaveLoadController.Instance.IslandSave.IsLoading)
+                    //{
+                    //    Island.ChangedObjectsCoords.Add(coord);
+                    //}
                 };
 
                 cell.OnItemDataChanged += (object sender, EventArgs e) =>
                 {
                     ChangeItemVisual(coord, (sender as Cell).ItemData.Visual);
+
+                    // If the item has been changed from loading data,
+                    // we do not want to perform certain actions.
+                    //if (!SaveLoadController.Instance.IslandSave.IsLoading)
+                    //{
+                    //    Island.ChangedItemsCoords.Add(coord);
+                    //}
                 };
             }
         }

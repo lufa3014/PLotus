@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "ScriptableObject/ItemData")]
-public class ItemDataSO : ScriptableObject, ITileVisual
+public class ItemDataSO : CellDataSO, ITileVisual
 {
     [field: SerializeField] public bool IsStackable { get; set; }
 

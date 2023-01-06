@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
 
-namespace MyGrid
+namespace WorldGrid
 {
+    [Serializable]
     public class Cell
     {
         public event EventHandler OnGroundDataChanged;
         public event EventHandler OnObjectDataChanged;
         public event EventHandler OnItemDataChanged;
 
+        [SerializeField]
         private GroundDataSO _groundData;
         public GroundDataSO GroundData
         {
@@ -23,6 +25,7 @@ namespace MyGrid
             }
         }
 
+        [SerializeField]
         private ObjectDataSO _objectData;
         public ObjectDataSO ObjectData
         {
@@ -37,6 +40,7 @@ namespace MyGrid
             }
         }
 
+        [SerializeField]
         private ItemDataSO _itemData;
         public ItemDataSO ItemData
         {
